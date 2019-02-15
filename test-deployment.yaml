@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: test-api
+spec:
+        replicas: 3
+        selector:
+                matchLabels:
+                        component: test-api
+        template:
+                metadata:
+                        labels:
+                                component: test-api
+                spec:
+                        containers:
+                                - name: test-api
+                                  image: aecs1/calqlum:latest
+                                  ports:
+                                          - containerPort: 3000
+                        imagePullSecrets:
+                                - name: regcred
